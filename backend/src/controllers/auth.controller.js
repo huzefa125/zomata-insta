@@ -190,12 +190,13 @@ async function loginFoodPartner(req, res) {
   }
 }
 
-async function LogoutFoodPartner(req,res){
+// ================== LOGOUT FOOD PARTNER ==================
+async function LogoutFoodPartner(req, res) {
   try {
-    req.cookies.clear("token")
-    res.status(200).json({message:"Food partner logged out successfully"})
+    res.clearCookie("token");
+    res.status(200).json({ message: "Food partner logged out successfully" });
   } catch (error) {
-    res.status(500).json({message:"Unable to logout"})
+    res.status(500).json({ message: "Unable to logout" });
   }
 }
 

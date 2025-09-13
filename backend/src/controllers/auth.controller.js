@@ -27,7 +27,8 @@ async function registerUser(req, res) {
       password: hashedPassword,
     });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key-change-in-production';
+    const token = jwt.sign({ id: user._id }, jwtSecret, {
       expiresIn: "7d",
     });
 
@@ -67,7 +68,8 @@ async function loginUser(req, res) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key-change-in-production';
+    const token = jwt.sign({ id: user._id }, jwtSecret, {
       expiresIn: "7d",
     });
 
@@ -121,7 +123,8 @@ async function registerFoodPartner(req, res) {
       password: hashedPassword,
     });
 
-    const token = jwt.sign({ id: foodPartner._id }, process.env.JWT_SECRET, {
+    const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key-change-in-production';
+    const token = jwt.sign({ id: foodPartner._id }, jwtSecret, {
       expiresIn: "7d",
     });
 
@@ -165,7 +168,8 @@ async function loginFoodPartner(req, res) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    const token = jwt.sign({ id: foodPartner._id }, process.env.JWT_SECRET, {
+    const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key-change-in-production';
+    const token = jwt.sign({ id: foodPartner._id }, jwtSecret, {
       expiresIn: "7d",
     });
 

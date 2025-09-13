@@ -8,7 +8,7 @@ router.post("/user/login", authController.loginUser);
 router.get("/user/logout", authController.logoutUser);
 
 // Food Partner routes
-router.post("/foodPartner/register", authController.registerFoodPartner);
-router.post("/foodPartner/login", authController.loginFoodPartner);
-router.get("/foodPartner/logout",authController.logoutUser);
+router.post("/food-partner/register", authController.registerFoodPartner);
+router.post("/food-partner/login", authController.loginFoodPartner);
+router.get("/food-partner/logout",authController.logoutUser);
 module.exports = router;

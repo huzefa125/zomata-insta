@@ -5,18 +5,23 @@ async function authFoodPartnerMiddleware(req, res, next) {
     const token = req.cookies.token;
     if (!token) {
         return res.status(401).json({
-            message: "Unautorized Access"
+            message: "Unauthorized Access"
         })
     }
 
     try {
         const decoded =  jwt.verify(token,process.env.JWT_SECRET)
         const foodPartner = await foodPartnerModel.findById(decoded.id);
+        if (!foodPartner) {
+            return res.status(401).json({
+                message: "Food partner not found"
+            })
+        }
         req.foodPartner = foodPartner
-        next()
+        next()  
     } catch (error) {
         return res.status(401).json({
-            message:"Invaid Token"
+            message: "Invalid Token"
         })
     }
 }
